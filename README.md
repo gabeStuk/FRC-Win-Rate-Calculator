@@ -1,5 +1,5 @@
 # Usage:
-clone the repo and run run.bat with `cmd /k run.bat` or with `py frcwr.py` if you've already got pip up to date
+clone the repo and run run.bat with `cmd /k run.bat` or with `py frcwr.py` if you've already got pip up to date. You can also run this program from the actions tab by triggering the action.
 # Reqs:
 requires [python](https://www.python.org/downloads) (tested and verified for 3.12)
 
