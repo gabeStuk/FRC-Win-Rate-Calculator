@@ -1,3 +1,5 @@
+name: Run Script
+
 on:
   workflow_dispatch:
     inputs:
