@@ -1,6 +1,8 @@
 import requests
 import sys
 
+useCLInput = len(sys.argv) > 1
+
 baseUrl = 'http://www.thebluealliance.com/api/v3/'
 header = {
     'X-TBA-Auth-Key': 'wGzJseZbdMKuFK9zflg15hCUMOz7ZMWDSeLgtGlhorVXLgxqeY2v6SXSAQeTeDVU'}
@@ -9,23 +11,74 @@ header = {
 def getTBAData(url):
     return requests.get(baseUrl + url, headers=header).json()
 
-if len(sys.argv) <= 2:
+
+# decode CLinput
+if useCLInput:
+    team1 = ""
+    team2 = ""
+    startDate = 0
+    endDate = 0
+    for i in range(len(sys.argv)):
+        match sys.argv[i]:
+            case "-team1":
+                if i == len(sys.argv) - 1 or sys.argv[i + 1].__contains__('-'):
+                    print("-team1: Value is required")
+                    exit()
+                team1 = sys.argv[i + 1]
+            case "-team2":
+                if i == len(sys.argv) - 1 or sys.argv[i + 1].__contains__('-'):
+                    print("-team2: Value is required")
+                    exit()
+                team2 = sys.argv[i + 1]
+            case "-start":
+                if i < len(sys.argv) - 1 and not(sys.argv[i + 1].__contains__('-')):
+                    try:
+                        startDate = int(sys.argv[i + 1])
+                    except ValueError:
+                        print("Error: start year value must be a valid integer")
+                        exit(1)
+            case "-end":
+                if i < len(sys.argv) - 1 and not(sys.argv[i + 1].__contains__('-')):
+                    try:
+                        endDate = int(sys.argv[i + 1])
+                    except ValueError:
+                        print("Error: start year value must be a valid integer")
+                        exit(1)
+
+    team1JSON = getTBAData("team/frc" + team1)
+    team1Start = team1JSON['rookie_year']
+    team1Name = team1JSON['nickname']
+    team2JSON = getTBAData("team/frc" + team2)
+    team2Start = team2JSON['rookie_year']
+    team2Name = team2JSON['nickname']
+    currYear = getTBAData('status')['current_season']
+    played = True
+
+    if startDate == 0:
+        startDate = max(team1Start, team2Start)
+
+    if endDate == 0:
+        endDate = currYear
+
+    if startDate > endDate:
+        print("Error: start date cannot be greated than end date")
+        exit(1)
+
+else:
     team1 = input("Team 1 number: ")
     team2 = input("Team 2 number: ")
-else:
-    team1 = sys.argv[1]
-    team2 = sys.argv[2]
-team1JSON = getTBAData("team/frc" + team1)
-team1Start = team1JSON['rookie_year']
-team1Name = team1JSON['nickname']
-team2JSON = getTBAData("team/frc" + team2)
-team2Start = team2JSON['rookie_year']
-team2Name = team2JSON['nickname']
-currYear = getTBAData('status')['current_season']
-startDate = 0
-endDate = 0
-played = True
-if len(sys.argv) <= 4:
+
+    team1JSON = getTBAData("team/frc" + team1)
+    team1Start = team1JSON['rookie_year']
+    team1Name = team1JSON['nickname']
+    team2JSON = getTBAData("team/frc" + team2)
+    team2Start = team2JSON['rookie_year']
+    team2Name = team2JSON['nickname']
+    currYear = getTBAData('status')['current_season']
+    startDate = 0
+    endDate = 0
+    played = True
+
     if startDateIn := input("Start Date: "):
         startDate = int(startDateIn)
         if startDate == currYear:
@@ -38,19 +91,8 @@ if len(sys.argv) <= 4:
     else:
         startDate = max(team1Start, team2Start)
         endDate = currYear
-else:
-    if startDateIn := sys.argv[3]:
-        startDate = int(startDateIn)
-        if startDate == currYear:
-            endDate = currYear
-        else:
-            if endDateIn := sys.argv[4]:
-                endDate = int(endDateIn)
-            else:
-                endDate = currYear
-    else:
-        startDate = max(team1Start, team2Start)
-        endDate = currYear
+
+
 
 
 # get events
@@ -125,3 +167,5 @@ if played:
         print("\nTies: ")
         for match in tieMatches:
             print(" - https://thebluealliance.com/match/" + match)
+
+exit(0)
