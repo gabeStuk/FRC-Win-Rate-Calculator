@@ -4,21 +4,22 @@ on:
       team1:
         description: "The 1'st team to compare"
         required: true
+        default: '0'
 
       team2:
         description: "The 2'nd team to compare"
         required: true
-        
+        default: '0'
         
       start-date:
         description: 'The start date of the interval to compare on'
-        required: true
+        required: false
+        default: ''
       end-date:
         description: 'The end date of the interval to compare on'
-        required: true
+        required: false
+        default: ''
           
-        
-
 # Funny Idea
 jobs:
   run-py:
@@ -38,4 +39,4 @@ jobs:
         run: pip install requests
       
       - name: (4) Run Python
-        run: 'py frcwr.py ${{github.event.inputs.team1}} ${{github.event.inputs.team2}} ${{github.event.inputs.start-date}} ${{github.event.inputs.end-date}}'
+        run: 'py frcwr.py -team1 ${{github.event.inputs.team1}} -team2 ${{github.event.inputs.team2}} -start ${{github.event.inputs.start-date}} -end ${{github.event.inputs.end-date}}'
