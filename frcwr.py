@@ -92,7 +92,7 @@ try:
 except ZeroDivisionError:
     print("\nNo matches played between " + team1Name + " and " + team2Name + (" in " + str(startDate)
           if startDate == endDate else " between " + str(startDate) + " and " + str(endDate)) +
-          " resulting in a win. They have had " + ties + " ties.")
+          " resulting in a win. They have had " + str(ties) + " ties.")
     played = False
 if played:
     if team1Wins > 0:
