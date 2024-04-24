@@ -10,4 +10,4 @@
     - or just use the action
 
 # Note:
- - if not on windows, the `py` shorthand won't work on other OS's, but it's just running a python file after verifying pip is updated properly (so probably `python` or `python3`)
+ - The `run` file is made explicitly to update pip, and therefore will not be necessary for further runs of the program, use `python frcwr.py` instead.
