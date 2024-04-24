@@ -1,3 +1,3 @@
-py -m pip install --upgrade pip
+python -m pip install --upgrade pip
 pip install requests
-py frcwr.py
+python frcwr.py
