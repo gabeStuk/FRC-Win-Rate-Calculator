@@ -4,21 +4,17 @@ on:
       team1:
         description: "The 1'st team to compare"
         required: true
-        default: '0'
 
       team2:
         description: "The 2'nd team to compare"
         required: true
-        default: '0'
         
       start-date:
         description: 'The start date of the interval to compare on'
         required: false
-        default: ''
       end-date:
         description: 'The end date of the interval to compare on'
         required: false
-        default: ''
           
 # Funny Idea
 jobs:
