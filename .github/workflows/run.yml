@@ -1,0 +1,41 @@
+on:
+  workflow_dispatch:
+    inputs:
+      team1:
+        description: "The 1'st team to compare"
+        required: true
+
+      team2:
+        description: "The 2'nd team to compare"
+        required: true
+        
+        
+      start-date:
+        description: 'The start date of the interval to compare on'
+        required: true
+      end-date:
+        description: 'The end date of the interval to compare on'
+        required: true
+          
+        
+
+# Funny Idea
+jobs:
+  run-py:
+    runs-on: windows-latest
+    steps:
+      - name: (1) Checkout
+        uses: actions/checkout@v4
+
+      - name: (2) Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+
+      - run: py -m pip install --upgrade pip
+
+      - name: (3) Installing modules
+        run: pip install requests
+      
+      - name: (3) Run Python
+        run: 'py frcwr.py ${{github.event.inputs.team1}} ${{github.event.inputs.team2}} ${{github.event.inputs.start-date}} ${{github.event.inputs.end-date}}'
