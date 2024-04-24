@@ -29,8 +29,6 @@ jobs:
         with:
           python-version: 3.12
 
-      - run: py -m pip install --upgrade pip
-
       - name: (3) Installing modules
         run: pip install requests
       
