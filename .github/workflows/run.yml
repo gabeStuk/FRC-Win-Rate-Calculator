@@ -1,0 +1,18 @@
+on:
+  workflow_dispatch:
+
+# Funny Idea
+jobs:
+  run-py:
+    runs-on: windows-latest
+    steps:
+      - name: (1) Checkout
+        uses: actions/checkout@v4
+
+      - name: (2) Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+      
+      - name: (3) Run Python
+        run: python frcwr.py
