@@ -1,4 +1,5 @@
 import requests
+import sys
 
 baseUrl = 'http://www.thebluealliance.com/api/v3/'
 header = {
@@ -8,9 +9,12 @@ header = {
 def getTBAData(url):
     return requests.get(baseUrl + url, headers=header).json()
 
-
-team1 = input("Team 1 number: ")
-team2 = input("Team 2 number: ")
+if len(sys.argv) <= 2:
+    team1 = input("Team 1 number: ")
+    team2 = input("Team 2 number: ")
+else:
+    team1 = sys.argv[1]
+    team2 = sys.argv[2]
 team1JSON = getTBAData("team/frc" + team1)
 team1Start = team1JSON['rookie_year']
 team1Name = team1JSON['nickname']
@@ -21,18 +25,32 @@ currYear = getTBAData('status')['current_season']
 startDate = 0
 endDate = 0
 played = True
-if startDateIn := input("Start Date: "):
-    startDate = int(startDateIn)
-    if startDate == currYear:
-        endDate = currYear
-    else:
-        if endDateIn := input("End Date: "):
-            endDate = int(endDateIn)
-        else:
+if len(sys.argv) <= 4:
+    if startDateIn := input("Start Date: "):
+        startDate = int(startDateIn)
+        if startDate == currYear:
             endDate = currYear
+        else:
+            if endDateIn := input("End Date: "):
+                endDate = int(endDateIn)
+            else:
+                endDate = currYear
+    else:
+        startDate = max(team1Start, team2Start)
+        endDate = currYear
 else:
-    startDate = max(team1Start, team2Start)
-    endDate = currYear
+    if startDateIn := sys.argv[3]:
+        startDate = int(startDateIn)
+        if startDate == currYear:
+            endDate = currYear
+        else:
+            if endDateIn := sys.argv[4]:
+                endDate = int(endDateIn)
+            else:
+                endDate = currYear
+    else:
+        startDate = max(team1Start, team2Start)
+        endDate = currYear
 
 
 # get events
