@@ -4,6 +4,7 @@
 
 [![Run Script](https://github.com/gabeStuk/FRC-Win-Rate-Calculator/actions/workflows/run.yml/badge.svg)](https://github.com/gabeStuk/FRC-Win-Rate-Calculator/actions/workflows/run.yml)
 ![Screenshot 2024-04-24 194905](https://github.com/gabeStuk/FRC-Win-Rate-Calculator/assets/117952984/a03c4cb1-d4f8-455d-9286-2cdc2c645e77)
+the output is located in the `run-py` job in the `(4) Run Python` step.
 
 # Requirements:
  - requires [python](https://www.python.org/downloads) (tested and verified for 3.12)
