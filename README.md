@@ -16,4 +16,4 @@ the output is located in the `run-py` job in the `(4) Run Python` step:
     - or just use the action
 
 # Note:
- - The `run.bat`/`run.sh` file is made explicitly to update pip, and therefore will not be necessary for further runs of the program, use `python frcwr.py` instead.
+ - The `run.bat`/`run.sh` file is made explicitly to update pip, and therefore will not be necessary for further runs of the program. Use `python frcwr.py` for future runs instead.
