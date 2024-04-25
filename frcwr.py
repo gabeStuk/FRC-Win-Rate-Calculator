@@ -61,7 +61,7 @@ if useCLInput:
         endDate = currYear
 
     if startDate > endDate:
-        print("Error: start date cannot be greated than end date")
+        print("Error: start year cannot be greater than end year")
         exit(1)
 
 else:
@@ -79,12 +79,12 @@ else:
     endDate = 0
     played = True
 
-    if startDateIn := input("Start Date: "):
+    if startDateIn := input("Start Year: "):
         startDate = int(startDateIn)
         if startDate == currYear:
             endDate = currYear
         else:
-            if endDateIn := input("End Date: "):
+            if endDateIn := input("End Year: "):
                 endDate = int(endDateIn)
             else:
                 endDate = currYear
