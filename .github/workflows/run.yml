@@ -4,11 +4,11 @@ on:
   workflow_dispatch:
     inputs:
       team1:
-        description: "The 1'st team to compare"
+        description: "The 1st team to compare"
         required: true
 
       team2:
-        description: "The 2'nd team to compare"
+        description: "The 2nd team to compare"
         required: true
         
       start-date:
