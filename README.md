@@ -1,5 +1,23 @@
 # Usage:
- - Clone the repository and run `run.bat`/`run.sh` with `cmd /k run.bat`/`bash run.sh`/`zsh run.sh` or with `python frcwr.py` if you've already got pip up to date.
+ - Clone the repository and run `run.bat`/`run.sh` with `cmd /k run.bat`/`bash run.sh`/`zsh run.sh` or with `python frcwr.py` if you've already got pip up to date:
+   Cmd:
+   ```
+   git clone https://github.com/gabeStuk/FRC-Win-Rate-Calculator
+   dir FRC-Win-Rate-Calculator
+   cmd /K run.sh
+   ```
+   Bash:
+   ```
+   git clone https://github.com/gabeStuk/FRC-Win-Rate-Calculator
+   cd FRC-Win-Rate-Calculator
+   bash run.sh
+   ```
+   Zsh:
+   ```
+   git clone https://github.com/gabeStuk/FRC-Win-Rate-Calculator
+   cd FRC-Win-Rate-Calculator
+   zsh run.sh
+   ```
  - You can also run this program from the actions tab by triggering the `Run Script` action (you will need to [fork](https://github.com/gabeStuk/FRC-Win-Rate-Calculator/fork) the repository):
 
 [![Run Script](https://github.com/gabeStuk/FRC-Win-Rate-Calculator/actions/workflows/run.yml/badge.svg)](https://github.com/gabeStuk/FRC-Win-Rate-Calculator/actions/workflows/run.yml)
