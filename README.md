@@ -7,7 +7,8 @@
 
 # Requirements:
  - requires [python](https://www.python.org/downloads) (tested and verified for 3.12)
+    - for most systems, the `run.bat`/`run.sh` script will automatically install pip with `python -m ensurepip` if not installed. However, WSL users will have to install pip externally
     - or just use the action
 
 # Note:
- - The `run` file is made explicitly to update pip, and therefore will not be necessary for further runs of the program, use `python frcwr.py` instead.
+ - The `run.bat`/`run.sh` file is made explicitly to update pip, and therefore will not be necessary for further runs of the program, use `python frcwr.py` instead.
