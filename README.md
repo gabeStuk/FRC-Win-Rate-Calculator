@@ -17,4 +17,4 @@ the output is located in the `run-py` job in the `(4) Run Python` step:
 
 # Notes:
  - The `run.bat`/`run.sh` file is made explicitly to update pip, and therefore will not be necessary for further runs of the program. Use `python frcwr.py` for future runs instead.
- - The start year and end year are optional parameters. The start year defaults to the later of the two teams' rookie years, and the end date defaults to the current season.
+ - The start year and end year are optional parameters. The start year defaults to the later of the two teams' rookie years, and the end year defaults to the current season.
