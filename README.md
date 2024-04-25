@@ -1,19 +1,19 @@
 # Usage:
  - Clone the repository and run `run.bat`/`run.sh` with `cmd /k run.bat`/`bash run.sh`/`zsh run.sh` or with `python frcwr.py` if you've already got pip up to date:
    Cmd:
-   ```
+   ```cmd
    git clone https://github.com/gabeStuk/FRC-Win-Rate-Calculator
    dir FRC-Win-Rate-Calculator
    cmd /K run.sh
    ```
    Bash:
-   ```
+   ```bash
    git clone https://github.com/gabeStuk/FRC-Win-Rate-Calculator
    cd FRC-Win-Rate-Calculator
    bash run.sh
    ```
    Zsh:
-   ```
+   ```zsh
    git clone https://github.com/gabeStuk/FRC-Win-Rate-Calculator
    cd FRC-Win-Rate-Calculator
    zsh run.sh
@@ -30,7 +30,7 @@ the output is located in the `run-py` job in the `(4) Run Python` step:
 
 # Requirements:
  - requires [python](https://www.python.org/downloads) (tested and verified for 3.12)
-    - for most systems, the `run.bat`/`run.sh` script will automatically install pip with `python -m ensurepip` if not installed. However, WSL users will have to install pip seperately
+    - for most systems, the `run.bat`/`run.sh` script will automatically install pip with `python -m ensurepip` if not installed. However, WSL users will have to install pip seperately, which varies by distro, but [here](https://www.tecmint.com/install-pip-in-linux/) is a good article explaining the process for different package managers.
     - or just use the action
 
 # Notes:
