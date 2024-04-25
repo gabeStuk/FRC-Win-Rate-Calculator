@@ -12,10 +12,10 @@ on:
         required: true
         
       start-date:
-        description: 'The start date of the interval to compare on'
+        description: 'The start year of the interval to compare on'
         required: false
       end-date:
-        description: 'The end date of the interval to compare on'
+        description: 'The end year of the interval to compare on'
         required: false
           
 # Funny Idea
