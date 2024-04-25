@@ -12,7 +12,7 @@ the output is located in the `run-py` job in the `(4) Run Python` step:
 
 # Requirements:
  - requires [python](https://www.python.org/downloads) (tested and verified for 3.12)
-    - for most systems, the `run.bat`/`run.sh` script will automatically install pip with `python -m ensurepip` if not installed. However, WSL users will have to install pip externally
+    - for most systems, the `run.bat`/`run.sh` script will automatically install pip with `python -m ensurepip` if not installed. However, WSL users will have to install pip seperately
     - or just use the action
 
 # Note:
