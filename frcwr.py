@@ -10,7 +10,8 @@ try:
 
     def getTBAData(url):
         result = requests.get(baseUrl + url, headers=header)
-        if result.status_code != 200 or list(result.json())[0] == "Error":
+        if result.status_code != 200 or len(result.json()) == 1:
+            print("--API Error-- Status code: " + str(result.status_code) + ", Error message: [" + result.json()['Error'] + ']')
             exit(404)
         return result.json()
 
