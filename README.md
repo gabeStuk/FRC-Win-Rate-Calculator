@@ -1,5 +1,5 @@
 # Usage
- - Clone the repository and run `run.bat`/`run.sh` with `cmd /k run.bat`/`bash run.sh`/`zsh run.sh` or with `python frcwr.py` if you've already got pip up to date:
+ - Clone the repository and run `run.bat`/`run.sh` with `cmd /k run.bat`/`bash run.sh`/`zsh run.sh` or with `python frcwr.py` if you've already got pip up to date
 
    Cmd:
    ```cmd
