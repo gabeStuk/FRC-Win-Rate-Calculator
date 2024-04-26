@@ -1,4 +1,4 @@
-# Usage:
+# Usage
  - Clone the repository and run `run.bat`/`run.sh` with `cmd /k run.bat`/`bash run.sh`/`zsh run.sh` or with `python frcwr.py` if you've already got pip up to date:
    Cmd:
    ```cmd
@@ -28,11 +28,11 @@ the output is located in the `run-py` job in the `(4) Run Python` step:
 
 
 
-# Requirements:
+# Requirements
  - requires [python](https://www.python.org/downloads) (tested and verified for 3.12)
     - for most systems, the `run.bat`/`run.sh` script will automatically install pip with `python -m ensurepip` if not installed. However, WSL users will have to install pip seperately, which varies by distro, but [here](https://www.tecmint.com/install-pip-in-linux/) is a good article explaining the process for different package managers.
     - or just use the action
 
-# Notes:
+# Notes
  - The `run.bat`/`run.sh` file is made explicitly to update pip, and therefore will not be necessary for further runs of the program. Use `python frcwr.py` for future runs instead.
  - The start year and end year are optional parameters. The start year defaults to the later of the two teams' rookie years, and the end year defaults to the current season.
