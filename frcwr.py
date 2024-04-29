@@ -131,23 +131,23 @@ try:
         for match in matchJSON:
             alliances = match['alliances']
             if ('frc' + team1) in alliances['blue']['team_keys'] and ('frc' + team2) in alliances['red']['team_keys']:
-                if match['winning_alliance'] == 'blue':
+                if match['winning_alliance'] == 'blue' and alliances['blue']['score'] != -1:
                     team1Wins += 1
                     t1WinMatches.append(match['key'])
-                elif match['winning_alliance'] == '':
+                elif match['winning_alliance'] == '' and alliances['blue']['score'] != -1:
                     ties += 1
                     tieMatches.append(match['key'])
-                else:
+                elif alliances['blue']['score'] != -1:
                     team2Wins += 1
                     t2WinMatches.append(match['key'])
             elif ('frc' + team2) in alliances['blue']['team_keys'] and ('frc' + team1) in alliances['red']['team_keys']:
-                if match['winning_alliance'] == 'red':
+                if match['winning_alliance'] == 'red' and alliances['red']['score'] != -1:
                     team1Wins += 1
                     t1WinMatches.append(match['key'])
-                elif match['winning_alliance'] == '':
+                elif match['winning_alliance'] == '' and alliances['red']['score'] != -1:
                     ties += 1
                     tieMatches.append(match['key'])
-                else:
+                elif alliances['red']['score'] != -1:
                     team2Wins += 1
                     t2WinMatches.append(match['key'])
     try:
