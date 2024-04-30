@@ -187,6 +187,7 @@ except KeyboardInterrupt:
     exit(130)
 except:
     e_type, e_val, e_trace = sys.exc_info()
-    print("Unexxpected exception: \n\t-Type: {}, \n\t-Message: {}, \n\t-Traceback: {}".format(e_type.__name__, e_val, e_trace))
-    print("Report to https://github.com/gabeStuk/FRC-Win-Rate-Calculator/issues/new")
-    exit(1)
+    if (e_type != SystemExit): 
+        print("Unexxpected exception: \n\t-Type: {}, \n\t-Message: {}, \n\t-Traceback: {}".format(e_type.__name__, e_val, e_trace))
+        print("Report to https://github.com/gabeStuk/FRC-Win-Rate-Calculator/issues/new")
+        exit(1)
