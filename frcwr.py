@@ -11,12 +11,17 @@ try:
         try:
             result = requests.get(baseUrl + url, headers=header)
         except requests.exceptions.ConnectionError:
-            print("Error: Bad network connection")
+            print("Error: Bad network connection. Make sure you are connected to Wi-Fi")
+            exit(1)
+        except:
+            e_type, e_val, e_trace = sys.exc_info()
+            print("Unexxpected exception: \n\t-Type: {}, \n\t-Message: {}, \n\t-Traceback: {}".format(e_type.__name__, e_val, e_trace))
+            print("Report to https://github.com/gabeStuk/FRC-Win-Rate-Calculator/issues/new")
             exit(1)
         if result.status_code != 200 or (len(result.json()) == 1 and result.json().keys()[0] == "Error"):
             if result.json()['Error'] == "X-TBA-Auth-Key is invalid. Please get an access key at http://www.thebluealliance.com/account.":
                 print("Error with TBA auth key. Please report the invalid key at "
-                      "https://github.com/gabeStuk/FRC-Win-Rate-Calculator/issues.")
+                      "https://github.com/gabeStuk/FRC-Win-Rate-Calculator/issues/new.")
                 exit(1)
             print("--API Error-- Status code: " + str(result.status_code) +
                   ", Error message: [" + result.json()['Error'] + ']')
@@ -180,3 +185,8 @@ try:
     exit(0)
 except KeyboardInterrupt:
     exit(130)
+except:
+    e_type, e_val, e_trace = sys.exc_info()
+    print("Unexxpected exception: \n\t-Type: {}, \n\t-Message: {}, \n\t-Traceback: {}".format(e_type.__name__, e_val, e_trace))
+    print("Report to https://github.com/gabeStuk/FRC-Win-Rate-Calculator/issues/new")
+    exit(1)
