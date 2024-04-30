@@ -5,16 +5,23 @@ try:
 
     baseUrl = 'http://www.thebluealliance.com/api/v3/'
     header = {
-        'X-TBA-Auth-Key': 'wGzJseZbdMKuFK9zflg15hCUMOz7ZMWDSeLgtGlhorVXLgxqeY2v6SXSAQeTeDVU'}
-
+         'X-TBA-Auth-Key': 'wGzJseZbdMKuFK9zflg15hCUMOz7ZMWDSeLgtGlhorVXLgxqeY2v6SXSAQeTeDVU'}
 
     def getTBAData(url):
-        result = requests.get(baseUrl + url, headers=header)
+        try:
+            result = requests.get(baseUrl + url, headers=header)
+        except requests.exceptions.ConnectionError:
+            print("Error: Bad network connection")
+            exit(1)
         if result.status_code != 200 or (len(result.json()) == 1 and result.json().keys()[0] == "Error"):
-            print("--API Error-- Status code: " + str(result.status_code) + ", Error message: [" + result.json()['Error'] + ']')
+            if result.json()['Error'] == "X-TBA-Auth-Key is invalid. Please get an access key at http://www.thebluealliance.com/account.":
+                print("Error with TBA auth key. Please report the invalid key at "
+                      "https://github.com/gabeStuk/FRC-Win-Rate-Calculator/issues.")
+                exit(1)
+            print("--API Error-- Status code: " + str(result.status_code) +
+                  ", Error message: [" + result.json()['Error'] + ']')
             exit(404)
         return result.json()
-
 
     # decode CLinput
     if useCLInput:
@@ -35,14 +42,14 @@ try:
                         exit()
                     team2 = sys.argv[i + 1]
                 case "-start":
-                    if i < len(sys.argv) - 1 and not(sys.argv[i + 1].__contains__('-')):
+                    if i < len(sys.argv) - 1 and not (sys.argv[i + 1].__contains__('-')):
                         try:
                             startDate = int(sys.argv[i + 1])
                         except ValueError:
                             print("Error: start year value must be a valid integer")
                             exit(1)
                 case "-end":
-                    if i < len(sys.argv) - 1 and not(sys.argv[i + 1].__contains__('-')):
+                    if i < len(sys.argv) - 1 and not (sys.argv[i + 1].__contains__('-')):
                         try:
                             endDate = int(sys.argv[i + 1])
                         except ValueError:
@@ -96,9 +103,6 @@ try:
             startDate = max(team1Start, team2Start)
             endDate = currYear
 
-
-
-
     # get events
     t1EventsJSON = getTBAData('team/frc' + team1 + '/events/simple')
     t2EventsJSON = getTBAData('team/frc' + team2 + '/events/simple')
@@ -127,7 +131,8 @@ try:
         print("   - " + event['name'])
 
         # get matches
-        matchJSON = getTBAData('event/' + str(event['key']) + '/matches/simple')
+        matchJSON = getTBAData(
+            'event/' + str(event['key']) + '/matches/simple')
         for match in matchJSON:
             alliances = match['alliances']
             if ('frc' + team1) in alliances['blue']['team_keys'] and ('frc' + team2) in alliances['red']['team_keys']:
@@ -152,11 +157,11 @@ try:
                     t2WinMatches.append(match['key'])
     try:
         print('\n' + team1Name + " win rate vs " + team2Name + ": " + str(team1Wins) + '-' + str(team2Wins) + '-' +
-            str(ties) + " (" + str(round(team1Wins / (team1Wins + team2Wins) * 100)) + "%)")
+              str(ties) + " (" + str(round(team1Wins / (team1Wins + team2Wins) * 100)) + "%)")
     except ZeroDivisionError:
         print("\nNo matches played between " + team1Name + " and " + team2Name + (" in " + str(startDate)
-            if startDate == endDate else " between " + str(startDate) + " and " + str(endDate)) +
-            " resulting in a win. They have had " + str(ties) + " ties.")
+                                                                                  if startDate == endDate else " between " + str(startDate) + " and " + str(endDate)) +
+              " resulting in a win. They have had " + str(ties) + " ties.")
         played = False
     if played:
         if team1Wins > 0:
