@@ -18,7 +18,7 @@ try:
             print("Unexxpected exception: \n\t-Type: {}, \n\t-Message: {}, \n\t-Traceback: {}".format(e_type.__name__, e_val, e_trace))
             print("Report to https://github.com/gabeStuk/FRC-Win-Rate-Calculator/issues/new")
             exit(1)
-        if result.status_code != 200 or (len(result.json()) == 1 and result.json().keys()[0] == "Error"):
+        if result.status_code != 200 or (len(result.json()) == 1 and list(result.json())[0] == "Error"):
             if result.json()['Error'] == "X-TBA-Auth-Key is invalid. Please get an access key at http://www.thebluealliance.com/account.":
                 print("Error with TBA auth key. Please report the invalid key at "
                       "https://github.com/gabeStuk/FRC-Win-Rate-Calculator/issues/new.")
