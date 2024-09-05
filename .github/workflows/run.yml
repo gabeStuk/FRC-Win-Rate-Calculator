@@ -1,0 +1,38 @@
+name: Run Script
+
+on:
+  workflow_dispatch:
+    inputs:
+      team1:
+        description: "The 1st team to compare"
+        required: true
+
+      team2:
+        description: "The 2nd team to compare"
+        required: true
+        
+      start-date:
+        description: 'The start year of the interval to compare on'
+        required: false
+      end-date:
+        description: 'The end year of the interval to compare on'
+        required: false
+          
+# Funny Idea
+jobs:
+  run-py:
+    runs-on: windows-latest
+    steps:
+      - name: (1) Checkout
+        uses: actions/checkout@v4
+
+      - name: (2) Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+
+      - name: (3) Installing modules
+        run: pip install requests
+      
+      - name: (4) Run Python
+        run: 'py frcwr.py -key ${{secrets.APIKEY}} -team1 ${{github.event.inputs.team1}} -team2 ${{github.event.inputs.team2}} -start ${{github.event.inputs.start-date}} -end ${{github.event.inputs.end-date}}'
