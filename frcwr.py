@@ -55,12 +55,12 @@ try:
                     if i == len(sys.argv) - 1 or sys.argv[i + 1].__contains__('-'):
                         print("-team1: Value is required")
                         exit()
-                    team1 = sys.argv[i + 1]
+                    team1 = sys.argv[i + 1].lstrip("0")
                 case "-team2":
                     if i == len(sys.argv) - 1 or sys.argv[i + 1].__contains__('-'):
                         print("-team2: Value is required")
                         exit()
-                    team2 = sys.argv[i + 1]
+                    team2 = sys.argv[i + 1].lstrip("0")
                 case "-start":
                     if i < len(sys.argv) - 1 and not (sys.argv[i + 1].__contains__('-')):
                         try:
@@ -76,10 +76,10 @@ try:
                             print("Error: start year value must be a valid integer")
                             exit(1)
 
-        team1JSON = getTBAData("team/frc" + team1)
+        team1JSON = getTBAData("team/frc" + team1.lstrip("0"))
         team1Start = team1JSON['rookie_year']
         team1Name = team1JSON['nickname']
-        team2JSON = getTBAData("team/frc" + team2)
+        team2JSON = getTBAData("team/frc" + team2.lstrip("0"))
         team2Start = team2JSON['rookie_year']
         team2Name = team2JSON['nickname']
         currYear = getTBAData('status')['current_season']
@@ -96,8 +96,8 @@ try:
             exit(1)
 
     else:
-        team1 = input("Team 1 number: ")
-        team2 = input("Team 2 number: ")
+        team1 = input("Team 1 number: ").lstrip("0")
+        team2 = input("Team 2 number: ").lstrip("0")
 
         team1JSON = getTBAData("team/frc" + team1)
         team1Start = team1JSON['rookie_year']
