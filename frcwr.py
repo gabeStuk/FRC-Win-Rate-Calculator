@@ -8,20 +8,22 @@ try:
 
     # i know this is bad
     if useCLInput:
-        apikey = [sys.argv[i + 1] for i in range(len(sys.argv)) if sys.argv[i] == "-key"][0]
-    
+        apikey = [sys.argv[i + 1]
+                  for i in range(len(sys.argv)) if sys.argv[i] == "-key"][0]
+
     if apikey == "":
         if os.path.exists("apikey.txt") and os.path.getsize("apikey.txt") > 0:
-            with open("apikey.txt") as f: apikey = f.read()
+            with open("apikey.txt") as f:
+                apikey = f.read()
         else:
             apikey = input("Enter TBA API Key: ")
-            with open("apikey.txt", 'w') as f: f.truncate(0); f.write(apikey)
-
-
+            with open("apikey.txt", 'w') as f:
+                f.truncate(0)
+                f.write(apikey)
 
     baseUrl = 'http://www.thebluealliance.com/api/v3/'
     header = {
-         'X-TBA-Auth-Key': apikey}
+        'X-TBA-Auth-Key': apikey}
 
     def getTBAData(url):
         try:
@@ -31,11 +33,12 @@ try:
             exit(1)
         except:
             e_type, e_val, e_trace = sys.exc_info()
-            print("Unexpected exception: \n\t-Type: {}, \n\t-Message: {}, \n\t-Traceback: {}".format(e_type.__name__, e_val, e_trace))
-            print("Report to https://github.com/gabeStuk/FRC-Win-Rate-Calculator/issues/new")
+            print("Unexpected exception: \n\t-Type: {}, \n\t-Message: {}, \n\t-Traceback: {}".format(
+                e_type.__name__, e_val, e_trace))
+            print("Report to https://github.com/gabeStuk/FRC-Win-Rate-Calculator/issues")
             exit(1)
         if result.status_code != 200 or (len(result.json()) == 1 and list(result.json())[0] == "Error"):
-            if result.json()['Error'] == "X-TBA-Auth-Key is invalid. Please get an access key at http://www.thebluealliance.com/account.":
+            if result.json()['Error'] == "X-TBA-Auth-Key is invalid. Please get an access key at https://www.thebluealliance.com/account/login?next=http://www.thebluealliance.com/account.":
                 print("Error with TBA auth key.")
                 exit(1)
             print("--API Error-- Status code: " + str(result.status_code) +
@@ -202,7 +205,8 @@ except KeyboardInterrupt:
     exit(130)
 except:
     e_type, e_val, e_trace = sys.exc_info()
-    if (e_type != SystemExit): 
-        print("Unexxpected exception: \n\t-Type: {}, \n\t-Message: {}, \n\t-Traceback: {}".format(e_type.__name__, e_val, e_trace))
+    if (e_type != SystemExit):
+        print("Unexxpected exception: \n\t-Type: {}, \n\t-Message: {}, \n\t-Traceback: {}".format(
+            e_type.__name__, e_val, e_trace))
         print("Report to https://github.com/gabeStuk/FRC-Win-Rate-Calculator/issues/new")
         exit(1)
