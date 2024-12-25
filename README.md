@@ -5,7 +5,7 @@
    ```cmd
    git clone https://github.com/gabeStuk/FRC-Win-Rate-Calculator
    dir FRC-Win-Rate-Calculator
-   cmd /K run.sh
+   cmd /K run.bat
    ```
    Bash:
    ```bash
