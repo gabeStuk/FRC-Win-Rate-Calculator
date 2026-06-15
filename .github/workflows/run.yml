@@ -35,4 +35,4 @@ jobs:
         run: pip install requests
       
       - name: (4) Run Python
-        run: 'py frcwr.py -key ${{secrets.APIKEY}} -team1 ${{github.event.inputs.team1}} -team2 ${{github.event.inputs.team2}} -start ${{github.event.inputs.start-date}} -end ${{github.event.inputs.end-date}}'
+        run: 'python3 frcwr.py -key ${{secrets.APIKEY}} -team1 ${{github.event.inputs.team1}} -team2 ${{github.event.inputs.team2}} -start ${{github.event.inputs.start-date}} -end ${{github.event.inputs.end-date}}'
